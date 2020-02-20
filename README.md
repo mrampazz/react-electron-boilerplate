@@ -1,5 +1,5 @@
 ## React + Electron
-Questo è il boilerplate completato, tuttavia vi consiglio di seguire tutti i passaggi che vi ho elencato così da riuscire a creare una vostra app.
+Questo è il boilerplate completato, tuttavia vi consiglio di seguire tutti i passaggi che vi ho elencato così da riuscire a creare una vostra app. Se volete vedere che funziona: clonate la repo, eseguite `npm install` e poi eseguite le istruzioni nella sezione §Conclusione alla fine del documento.
 
 ### Prerequisiti
 - nodejs
