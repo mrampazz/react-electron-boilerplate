@@ -1,6 +1,11 @@
 import React from 'react';
-import axios from 'axios';
+import './FileChooser.css';
+// ipcRenderer => comunica con ipcMain in main.js
+const { ipcRenderer } = window.require('electron'); 
 
+// Il primo form serve a copiare il file originale json in una directory
+// pensavo di copiare il file in modo da non lavorare sul file originale 
+// per evitare possibili errori/corruzione dei dati
 export default class FileChooser extends React.Component {
     constructor(props) {
         super(props);
@@ -11,9 +16,12 @@ export default class FileChooser extends React.Component {
 
     formSubmit = e => {
         e.preventDefault();
-        this.fileUpload(this.state.file).then((response) => {
-            console.log(response.data);
-        })
+        console.log(this.state.file);
+        let fileInfo = {
+            name: this.state.file.name,
+            path: this.state.file.path
+        }
+        ipcRenderer.send('async-msg', fileInfo);
     }
 
     onChange = e => {
@@ -22,26 +30,25 @@ export default class FileChooser extends React.Component {
         })
     }
 
-    fileUpload = file => {
-        const url="http://localhost:3001/jsonFiles";
-        const formData = new FormData();
-        formData.append('file', file);
-        const config = {
-            'content-type': 'multipart/form-data'
-        }
-
-        return axios.post(url, formData, {})
-            .then(res => {
-                console.log(res.statusText);
-            })
-    }
-
     render() {
         return (
-            <form onSubmit={this.formSubmit}>
-                <input type="file" name="file" onChange={this.onChange} />
-                <button type="submit">Upload JSON</button>
-            </form>
+            <div className="fileChooserContainer">
+                <div className="bg-red">
+                    <span> 
+                            { 
+                                this.state.file ?
+                                    this.state.file.name :
+                                    "Nessun file selezionato"
+                            } 
+                    </span>
+                </div>
+                
+                <form className="fileChooserForm bg-red" onSubmit={this.formSubmit}>
+                    <input className="fileChooserInput" id="fileChooser" type="file" name="file" accept=".json, .JSON" onChange={this.onChange} />
+                    <label for="fileChooserLabel" className="btn-3"><div>Seleziona un file JSON</div></label>
+                    <button className="customButton" type="submit">Inizia Addestramento</button>
+                </form>
+            </div>
         );
     }
 }

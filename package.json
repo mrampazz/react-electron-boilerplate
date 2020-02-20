@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "src/start.js",
+  "main": "src/main.js",
   "build": {
     "appId": "some.id.ofyours",
     "directories": {
