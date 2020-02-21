@@ -34,7 +34,7 @@ export default class FileChooser extends React.Component {
         return (
             <div className="fileChooserContainer">
                 <div className="bg-red">
-                    <span> 
+                    <span> File selezionato:
                             { 
                                 this.state.file ?
                                     this.state.file.name :
@@ -45,7 +45,7 @@ export default class FileChooser extends React.Component {
                 
                 <form className="fileChooserForm bg-red" onSubmit={this.formSubmit}>
                     <input className="fileChooserInput" id="fileChooser" type="file" name="file" accept=".json, .JSON" onChange={this.onChange} />
-                    <label for="fileChooserLabel" className="btn-3"><div>Seleziona un file JSON</div></label>
+                    <label for="fileChooser" className="fileChooserLabel btn-3"><div>Seleziona un file JSON</div></label>
                     <button className="customButton" type="submit">Inizia Addestramento</button>
                 </form>
             </div>
