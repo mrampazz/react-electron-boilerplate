@@ -6,7 +6,7 @@ const fs = require('fs');
 
 let window;
 
-const baseDir = "/home/mramp/Desktop/jsonFiles";
+const baseDir = app.getAppPath()+"/static";
 
 
 
