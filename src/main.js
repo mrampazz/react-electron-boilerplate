@@ -22,7 +22,7 @@ function createWindow() {
   // ricordate di cambiare la porta dopo localhost se necessario
   mainWindow.loadURL(
     isDev
-      ? 'http://localhost:3001'
+      ? 'http://localhost:3000'
       : `file://${join(__dirname, '../build/index.html')}`,
   )
 
