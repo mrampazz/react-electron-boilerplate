@@ -1,5 +1,6 @@
 import React from 'react';
 import './FileChooser.css';
+import Chooser from './Chooser';
 // ipcRenderer => comunica con ipcMain in main.js
 const { ipcRenderer } = window.require('electron'); 
 
@@ -10,42 +11,51 @@ export default class FileChooser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            file: null
+            fileArray: []
         }
     }
 
-    formSubmit = e => {
+
+    sendInfo = e => {
         e.preventDefault();
-        console.log(this.state.file);
-        let fileInfo = {
-            name: this.state.file.name,
-            path: this.state.file.path
-        }
-        ipcRenderer.send('async-msg', fileInfo);
+        console.log(this.state.fileArray)
+        // ipcRenderer.send('async-msg', fileInfo);
     }
 
-    onChange = e => {
+    getFileInfo = file => {
+        return {
+            name: file.name,
+            path: file.path,
+            type: file.type
+        }
+    }
+
+    onChangeType = e => {
+        const files = this.state.fileArray; 
+        if (files) {
+            files.push( this.getFileInfo(e.target.files[0]) );
+            files.length = Math.min(files.length, 2);
+        }
         this.setState({
-            file: e.target.files[0]
+            fileArray: files
         })
     }
 
     render() {
         return (
             <div className="fileChooserContainer">
-                <div className="bg-red">
-                    <span> 
-                            { 
-                                this.state.file ?
-                                    this.state.file.name :
-                                    "Nessun file selezionato"
-                            } 
-                    </span>
-                </div>
-                
-                <form className="fileChooserForm bg-red" onSubmit={this.formSubmit}>
-                    <input className="fileChooserInput" id="fileChooser" type="file" name="file" accept=".json, .JSON" onChange={this.onChange} />
-                    <label for="fileChooser" className="btn-3"><div>Seleziona un file JSON</div></label>
+                <form className="fileChooserForm bg-red" onSubmit={this.sendInfo}>
+
+                    <Chooser
+                        type="json"
+                        onChange={this.onChangeType}
+                    />
+                    
+                    <Chooser
+                        type="csv"
+                        onChange={this.onChangeType}
+                    />
+                    
                     <button className="customButton" type="submit">Inizia Addestramento</button>
                 </form>
             </div>

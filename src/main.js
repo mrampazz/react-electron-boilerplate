@@ -48,7 +48,7 @@ app.on('activate', () => {
 function getJson(file) {
   console.log(file.path);
   console.log(baseDir+'/'+file.name);
-  console.log("===============")
+  console.log("===============");
   fs.copyFile(file.path, baseDir+'/'+file.name, (err) => {
     if (err)
       throw err;
