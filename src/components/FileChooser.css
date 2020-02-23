@@ -4,16 +4,12 @@
     overflow: hidden;
 }
 
-.btn-3 {
-    background-color: #09BC8A;
-    border-radius: 0;
+.fileChooserLabel {
     height: 50px;
-    width: 200px;
     cursor: pointer;
-    transition: all .2s ease-in-out;
 }
 
-.btn-3 div {
+.fileChooserLabel div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +17,17 @@
     color: black;
     font-weight: bold;
     font-size: 16px;
+    width: 250px;
 }
+
+.file-chosen {
+    background-color: #F9DC5C;
+}
+
+.no-file {
+    background-color: #09BC8A;
+}
+
 
 .btn-3:hover {
     background-color: rgb(13, 144, 107);
@@ -32,6 +38,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.fileChooserForm div {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .btn-3 span {
@@ -47,7 +58,7 @@
 
 .customButton {
     margin-left: 50px;
-    width: 200px;
+    width: 250px;
     height: 50px;
     background-color: #09BC8A;
     border: none;
@@ -63,7 +74,11 @@
 }
 
 .fileChooserContainer {
-    width: 50%;
+    height: 10%;
+    width: 100%;
     position: absolute;
     bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
