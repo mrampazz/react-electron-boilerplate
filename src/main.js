@@ -4,6 +4,7 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 const fs = require('fs');
 
+
 let window;
 
 const baseDir = app.getAppPath()+"/static";
@@ -23,7 +24,7 @@ function createWindow() {
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : `file://${join(__dirname, '../build/index.html')}`,
+      : app.getAppPath()+'/build/index.html'
   )
 
   mainWindow.on('closed', () => {
