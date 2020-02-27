@@ -24,7 +24,7 @@ function createWindow() {
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
-      : app.getAppPath()+'/build/index.html'
+      : 'file:///'+app.getAppPath()+'/build/index.html'
   )
 
   mainWindow.on('closed', () => {
