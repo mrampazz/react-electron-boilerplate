@@ -1,15 +1,14 @@
-const electron = require('electron')
-const app = electron.app
-const path = require('path')
-const isDev = require('electron-is-dev')
-const BrowserWindow = electron.BrowserWindow
+const { app, BrowserWindow } = require('electron');
+const ipcMain = require('electron').ipcMain;
+const isDev = require('electron-is-dev');
+const fs = require('fs');
 
-let mainWindow
+let window;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+  var mainWindow = new BrowserWindow({
+    width: 1024,
+    height: 768,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -18,8 +17,8 @@ function createWindow() {
   // ricordate di cambiare la porta dopo localhost se necessario
   mainWindow.loadURL(
     isDev
-      ? 'http://localhost:3001'
-      : `file://${path.join(__dirname, '../build/index.html')}`,
+      ? 'http://localhost:3000'
+      : 'file:///'+app.getAppPath()+'/build/index.html'
   )
 
   mainWindow.on('closed', () => {
@@ -39,4 +38,8 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+ipcMain.on("async-msg", (event, arg) => {
+  event.reply("async-reply", 'ok');
 })
