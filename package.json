@@ -1,8 +1,8 @@
 {
   "name": "react-electron-boilerplate",
-  "productName": "Cool electron app",
+  "productName": "VRAM Software - POC1",
   "version": "0.0.1",
-  "author": "vram",
+  "author": "VRAM Software",
   "private": true,
   "description": "Applicativo Esterno Gruppo VRAM",
   "homepage": "./",
@@ -14,8 +14,8 @@
     ],
     "publish": {
       "provider": "github",
-      "repo": "electron-mramp",
-      "owner": "vram"
+      "repo": "mrampazz/react-electron-boilerplate",
+      "owner": "VRAM Software"
     }
   },
   "dependencies": {

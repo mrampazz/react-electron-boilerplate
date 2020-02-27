@@ -1,15 +1,9 @@
 const { app, BrowserWindow } = require('electron');
 const ipcMain = require('electron').ipcMain;
-const path = require('path');
 const isDev = require('electron-is-dev');
 const fs = require('fs');
 
-
 let window;
-
-const baseDir = app.getAppPath()+"/static";
-
-
 
 function createWindow() {
   var mainWindow = new BrowserWindow({
@@ -46,17 +40,6 @@ app.on('activate', () => {
   }
 })
 
-function getJson(file) {
-  console.log(file.path);
-  console.log(baseDir+'/'+file.name);
-  console.log("===============");
-  fs.copyFile(file.path, baseDir+'/'+file.name, (err) => {
-    if (err)
-      throw err;
-  })
-}
-
 ipcMain.on("async-msg", (event, arg) => {
-  getJson(arg);
   event.reply("async-reply", 'ok');
 })
